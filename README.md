@@ -1,11 +1,9 @@
 # Vibefeed
 
 ## Installation guide
-
-- npm install -g expo-cli
   
-- npm install
+- **npm install**
 
 ## Starting app
 
-- npm start
+- **npm start**
