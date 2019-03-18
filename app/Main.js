@@ -6,6 +6,7 @@ export default class Main extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Vibefeed</Text>
+        <Text>hi</Text>
       </View>
     );
   }
