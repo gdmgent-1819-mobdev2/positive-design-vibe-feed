@@ -6,7 +6,7 @@ export default class User extends React.Component {
   render() {
     return (
 
-     <View styles={styles.container}>
+     <View style={styles.container}>
         <Text>User doing fun stuff</Text>
      </View>
     )

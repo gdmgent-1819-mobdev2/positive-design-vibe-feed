@@ -7,6 +7,8 @@ export default class Quotes extends React.Component {
     return (
 
      <View style={styles.container}>
+
+        <Text>Hello from Quote</Text>
         <Button title ='Profile' onPress={()=> this.props.navigation.navigate 
         ('User')}/>
         <Button title ='Feed' onPress={()=> this.props.navigation.navigate 
