@@ -72,17 +72,20 @@ export default class Quote extends React.Component {
     const quoteId = this.state.currentQuote.quote_id
     const userId = 'fDbQFFvKQ1YWqTJ6EJmEKRJASS42'
     let likes = this.state.currentQuote.likes
-
+    const self = this;
     likes++;
 
     this.getLikesUser()
       .then(likesUser => {
-        likesUser.push(quoteId)
-        firebase.database().ref(`likes_user/${userId}`).set(likesUser)
+        if (!likesUser.includes(quoteId)) {
+          likesUser.push(quoteId)
+          firebase.database().ref(`likes_user/${userId}`).set(likesUser)
+          firebase.database().ref(`quotes/${quoteId}/likes`).set(likes)
+        }
       })
-      .then ( () => {
-        firebase.database().ref(`quotes/${quoteId}/likes`).set(likes)
-      }) 
+      .then(() => {
+        self.getRandomQuote()
+      })
   }
 
   render() {
