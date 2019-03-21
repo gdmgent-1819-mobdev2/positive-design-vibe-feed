@@ -25,6 +25,7 @@ export default class Quote extends React.Component {
   convertObjectToArray = object => Object.keys(object).map(i => object[i])
 
   getAllQuotes = () => {
+    const firebase = getInstance()
     return new Promise((resolve, reject) => {
       firebase.database().ref('quotes').once('value')
         .then(snapshot => snapshot.val())
@@ -51,7 +52,12 @@ export default class Quote extends React.Component {
       firebase.database().ref(`likes_user/${userId}`).once('value')
         .then(snapshot => snapshot.val())
         .then(likesUser => {
-          likesUser = this.convertObjectToArray(quotes)
+          if (likesUser === null) {
+            likesUser = [];
+          }
+          else {
+            likesUser = this.convertObjectToArray(likesUser)
+          }
           resolve(likesUser)
         })
         .catch((error) => {
