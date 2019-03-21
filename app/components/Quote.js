@@ -88,15 +88,21 @@ export default class Quote extends React.Component {
       })
   }
 
+  dislikeQuote = () => {
+    this.getRandomQuote()
+  }
+
   render() {
     console.log(this.state.currentQuote)
     return (
       <View>
-        <Text>{ this.state.currentQuote['quote'] }</Text>
-        <TouchableOpacity>
-          <FontAwesome onPress={ this.likeQuote } name="heart"></FontAwesome>    
+        <Text>"{ this.state.currentQuote.quote }"</Text>
+        <Text>{ this.state.currentQuote.likes }</Text>
+        <Text>user#{ this.state.currentQuote.uid }</Text>
+        <TouchableOpacity onPress={ this.likeQuote }>
+          <FontAwesome name="heart"></FontAwesome>    
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={ this.dislikeQuote } >
           <FontAwesome name="times"></FontAwesome>
         </TouchableOpacity>
       </View>
