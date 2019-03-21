@@ -6,7 +6,7 @@ export default class Main extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AddQuote />
+        <Quote />
       </View>
     );
   }

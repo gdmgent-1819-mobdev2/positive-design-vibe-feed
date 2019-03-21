@@ -25,7 +25,6 @@ export default class Quote extends React.Component {
   convertObjectToArray = object => Object.keys(object).map(i => object[i])
 
   getAllQuotes = () => {
-    const firebase = getInstance()
     return new Promise((resolve, reject) => {
       firebase.database().ref('quotes').once('value')
         .then(snapshot => snapshot.val())
@@ -45,17 +44,39 @@ export default class Quote extends React.Component {
     this.setState({currentQuote: randomQuote})
   }
 
+  getLikesUser = () => {
+    const firebase = getInstance()
+    const userId = 'fDbQFFvKQ1YWqTJ6EJmEKRJASS42'
+    return new Promise((resolve, reject) => {
+      firebase.database().ref(`likes_user/${userId}`).once('value')
+        .then(snapshot => snapshot.val())
+        .then(likesUser => {
+          likesUser = this.convertObjectToArray(quotes)
+          resolve(likesUser)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+
+  }
+
   likeQuote = () => {
     const firebase = getInstance()
     const quoteId = this.state.currentQuote.quote_id
+    const userId = 'fDbQFFvKQ1YWqTJ6EJmEKRJASS42'
     let likes = this.state.currentQuote.likes
 
     likes++;
 
-    firebase.database().ref(`quotes/${quoteId}/likes`).set({
-      likes
-    })
-    
+    this.getLikesUser()
+      .then(likesUser => {
+        likesUser.push(quoteId)
+        firebase.database().ref(`likes_user/${userId}`).set(likesUser)
+      })
+      .then ( () => {
+        firebase.database().ref(`quotes/${quoteId}/likes`).set(likes)
+      }) 
   }
 
   render() {
