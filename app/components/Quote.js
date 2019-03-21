@@ -72,7 +72,6 @@ export default class Quote extends React.Component {
     const quoteId = this.state.currentQuote.quote_id
     const userId = 'fDbQFFvKQ1YWqTJ6EJmEKRJASS42'
     let likes = this.state.currentQuote.likes
-    const self = this;
     likes++;
 
     this.getLikesUser()
@@ -84,7 +83,7 @@ export default class Quote extends React.Component {
         }
       })
       .then(() => {
-        self.getRandomQuote()
+        this.getRandomQuote()
       })
   }
 
