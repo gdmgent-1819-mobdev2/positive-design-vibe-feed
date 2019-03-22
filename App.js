@@ -14,7 +14,7 @@ export default class App extends React.Component {
     return (
    
       
-      <AppTabNavigation/>
+      <AppStackNavigator/>
     
  
     )
@@ -22,15 +22,11 @@ export default class App extends React.Component {
 }
 
 const AppStackNavigator = new StackNavigator({
-  Quotes: { screen: Quotes},
-  User :{ screen: User},
-  Feed : { screen : Feed},
-  MoodChange : {screen : MoodChange}
+  MoodChange: { screen: MoodChange },
+  Feed: { screen: AppTabNavigation }
+});
 
-
-})
 const styles = StyleSheet.create({
-
   container : {
     flex:1,
     flexDirection: 'column',

@@ -1,53 +1,65 @@
 import React from 'react'
-import {View, Text,StyleSheet,Button} from 'react-native';
+import {View, Image,StyleSheet,Slider, Button} from 'react-native';
+import Images from '../assets/images';
 
-import Images from '../assets/images/index';
-import SliderInput from '../components/SliderInput/SliderInput';
-import ChangeImage from '../components/ChangeImage/ChangeImage';
+export default class MoodChange extends React.Component {
 
-this.state = {
-    "imageId" : 3
-}
+  constructor(props) {
+    super(props);
+    this.state = { 
+      value: 3
+    }
+   }
 
-function changeImage() {
-    switch(this.state.imageId == 3){
+   changeImage() {
+    switch(this.state.value){
         case 1:
-        return  <Image source={Images.emote2}/>;
-        break
+          return  Images.emote2;
+          break
 
         case 2:
-        return  <Image source={Images.emote4}/>;
-        break
+          return  Images.emote4;
+          break
 
         case 3:
-        return  <Image source={Images.emote3}/>
-        break
+          return  Images.emote3;
+          break
 
         case 4:
-        return  <Image source={Images.emote5}/>;
+          return  Images.emote5;
+          break
 
         case 5:
-        return <Image source={Images.emote1}/>
-        break
+          return Images.emote1;
+          break
+
         default:
-        return  <Image source={Images.emote3}/>
-        break
+          return  Images.emote3;
+          break
     }
 }
- 
-export default class MoodChange extends React.Component {
+
+
   render() {
     return (
 
      <View style={styles.container}>
-            changeImage();
+        <Image source={this.changeImage()} />
+        <Slider
+          style={{ width: 300 }}
+          step={1}
+          minimumValue={1}
+          maximumValue={5}
+          value={this.state.val}
+          onValueChange={val => this.setState({ value: val })}
+          onSlidingComplete={ val => console.log(this.state.value)}
+        />
      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-
   container : {
     flex:1,
     backgroundColor: '#fff',
