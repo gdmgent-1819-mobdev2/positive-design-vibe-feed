@@ -15,6 +15,8 @@ export default class Quotes extends React.Component {
         ('Feed')}/>
         <Button title ='Quotes' onPress={()=> this.props.navigation.navigate 
         ('Quotes')}/>
+        <Button title ='MoodChange' onPress={()=> this.props.navigation.navigate 
+        ('MoodChange')}/>
      </View>
     )
   }

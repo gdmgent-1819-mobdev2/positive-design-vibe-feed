@@ -17,7 +17,7 @@ export default class AppTabNavigation extends Component {
 
     render() {
         return (
-            <MainTabNavigation screenProps={{ navigation: this.props.navigation }} />
+            <MainTabNavigation screenProps={{ navigation: this.props.navigation }} style={styles.tabNav}/>
         )
     }
 }
@@ -53,9 +53,12 @@ const MainTabNavigation = new TabNavigator({
 })
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+    
+    tabNav: {
+        flex : 1,
+        flexDirection: 'column',
+        alignItems :'flex-end',
+        justifyContent: 'center', 
+        backgroundColor:'red'
     }
 });

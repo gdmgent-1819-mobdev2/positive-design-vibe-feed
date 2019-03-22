@@ -6,8 +6,11 @@ export default class SliderInput extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { value: 3 }
-       } 
+        this.state = { 
+          value: 3 
+        }
+       }
+
        getVal(val){
        console.warn(val);
        }     
@@ -19,13 +22,13 @@ export default class SliderInput extends Component {
               style={{ width: 300 }}
               step={1}
               minimumValue={1}
-              maximumValue={4}
+              maximumValue={5}
               value={this.state.val}
               onValueChange={val => this.setState({ value: val })}
               onSlidingComplete={ val => this.getVal(val)}
              />
              <Text style={styles.welcome}>
-               {this.state.age}
+               {this.state.val}
              </Text>            
            </View>
          );

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "expo": "^32.0.0",
+    "firebase": "^5.9.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-gesture-handler": "~1.0.14",
@@ -17,5 +18,21 @@
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "positive-design-vibe-feed",
+  "description": "## Installation guide",
+  "version": "1.0.0",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdmgent-1819-mobdev2/positive-design-vibe-feed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdmgent-1819-mobdev2/positive-design-vibe-feed/issues"
+  },
+  "homepage": "https://github.com/gdmgent-1819-mobdev2/positive-design-vibe-feed#readme"
 }
