@@ -1,18 +1,35 @@
 import React from 'react'
-import {View, Image,StyleSheet,Slider, Button} from 'react-native';
+import {View, Image,StyleSheet,Slider, Button,Text} from 'react-native';
 import Images from '../assets/images';
+import { getInstance } from '../services/firebase';
 
 export default class MoodChange extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = { 
-      value: 3
+      mood: ''
     }
    }
 
+   storeData = (mood) => {
+    const firebase = getInstance() 
+    const userId = 'fDbQFFvKQ1YWqTJ6EJmEKRJASS42'
+    const date = new Date()
+    const key = firebase.database().ref('mood_user').push().getKey()
+    firebase.database().ref(`mood/${userId}`).set({
+      uid:'acbhj1hFwohuQvJWCSeXpZB90sC3',
+      mood_id: key,
+      mood: this.state.mood,
+      created_at: date.toLocaleString(),
+      deleted_at: '',
+
+    })
+    this.setState({mood:''})
+   }
+
    changeImage() {
-    switch(this.state.value){
+    switch(this.state.mood){
         case 1:
           return  Images.emote2;
           break
@@ -44,6 +61,7 @@ export default class MoodChange extends React.Component {
     return (
 
      <View style={styles.container}>
+        <Text>How are you feeling ?</Text>
         <Image source={this.changeImage()} />
         <Slider
           style={{ width: 300 }}
@@ -51,9 +69,10 @@ export default class MoodChange extends React.Component {
           minimumValue={1}
           maximumValue={5}
           value={this.state.val}
-          onValueChange={val => this.setState({ value: val })}
-          onSlidingComplete={ val => console.log(this.state.value)}
+          onValueChange={val => this.setState({ mood: val })}
+          onSlidingComplete={(mood)=>this.setState({mood})}
         />
+        <Button title='Confirm' onPress={()=>this.storeData(this.state.mood)}/>
      </View>
     )
   }
