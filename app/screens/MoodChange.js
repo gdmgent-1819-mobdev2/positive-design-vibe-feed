@@ -61,7 +61,7 @@ export default class MoodChange extends React.Component {
     return (
 
      <View style={styles.container}>
-        <Text>How are you feeling ?</Text>
+        <Text style={styles.baseText}>How are you feeling ?</Text>
         <Image source={this.changeImage()} />
         <Slider
           style={{ width: 300 }}
@@ -69,10 +69,11 @@ export default class MoodChange extends React.Component {
           minimumValue={1}
           maximumValue={5}
           value={this.state.val}
+          thumbTintColor={'#00A6DB'}
           onValueChange={val => this.setState({ mood: val })}
           onSlidingComplete={(mood)=>this.setState({mood})}
         />
-        <Button title='Confirm' onPress={()=>this.storeData(this.state.mood)}/>
+        <Button title='Confirm' style= {styles.button} onPress={()=>this.storeData(this.state.mood)}/>
      </View>
     )
   }
@@ -84,5 +85,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems : 'center',
     justifyContent : 'center',
+  },
+  baseText : {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#3E3C63'
+  },
+  button: {
+    backgroundColor: '#FCBE5B',
+    color: '#fff',
+    width: '40%',
+    marginTop: 30,
+    marginLeft: '30%',
+    paddingTop: 15,
+    paddingBottom: 15,
+    elevation: 0
   },
 });

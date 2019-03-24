@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text,View,StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import { StackNavigator} from 'react-navigation';
 import Feed from './app/screens/Feed';
@@ -23,7 +23,8 @@ export default class App extends React.Component {
 
 const AppStackNavigator = new StackNavigator({
   MoodChange: { screen: MoodChange },
-  Feed: { screen: AppTabNavigation }
+  Feed: { screen: AppTabNavigation },
+ 
 });
 
 const styles = StyleSheet.create({

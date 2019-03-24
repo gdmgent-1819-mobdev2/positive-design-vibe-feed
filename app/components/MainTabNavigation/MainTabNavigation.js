@@ -5,8 +5,8 @@ import {
     StyleSheet
 } from "react-native";
 
-import { TabNavigator } from 'react-navigation'
-import Ionicons from 'react-native-ionicons';
+import { TabNavigator, TabBarBottom } from 'react-navigation'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import Feed from '../../screens/Feed';
 import Quotes from '../../screens/Quotes';
@@ -18,48 +18,44 @@ export default class AppTabNavigation extends Component {
 
     render() {
         return (
-            <MainTabNavigation screenProps={{ navigation: this.props.navigation }} style={styles.tabNav}/>
+            <MainTabNavigation screenProps={{ navigation: this.props.navigation }}/>
         )
     }
 }
 
 const MainTabNavigation = new TabNavigator({
-    Feed: {
-        screen: Feed,
-        navigationOptions: {
-            tabBarLabel: 'Feed',
-            tabBarIcon: () => (
-                <Ionicons name="paper" size={24} />
-            )
-        }
-    },
     Quotes: {
         screen: Quotes,
         navigationOptions: {
             tabBarLabel: 'Quotes',
-            tabBarIcon: () => (
-                <Ionicons name="quote" size={24} />
-            )
+            tabBarIcon: () => <Icon name="md-quote" size={25}   color={'white'} />
+            
         }
     },
     User: {
         screen: User,
         navigationOptions: {
             tabBarLabel: 'Profile',
-            tabBarIcon: () => (
-                <Ionicons name="person" size={24} />
-            )
+            tabBarIcon: () => <Icon name="md-person" size={25}  color={'white'} />
         }
+    },
+    Feed: {
+        screen: Feed,
+        navigationOptions: {
+            tabBarLabel: 'Statistics',
+            tabBarIcon: () => <Icon name="md-stats" size={25} color={'white'} />
+        },
+        labelStyle: {
+            fontSize: 12,
+          }
     }
-})
+}, 
+{
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom'
+},
 
-const styles = StyleSheet.create({
+   
     
-    tabNav: {
-        flex : 1,
-        flexDirection: 'column',
-        alignItems :'flex-end',
-        justifyContent: 'center', 
-        backgroundColor:'red'
-    }
-});
+)
+
