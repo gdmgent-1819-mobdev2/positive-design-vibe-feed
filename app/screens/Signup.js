@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import { getInstance } from '../services/firebase'
 import CustomHeader from '../components/CustomHeader';
@@ -37,7 +37,7 @@ try {
       this.props.navigation.navigate('App')
     })
 } catch (error) {
-    console.log(error.toString())
+    Alert.alert(error.toString())
     }
 }
 
@@ -46,9 +46,10 @@ try {
   render() {
     return (
         <Container style={styles.container}>
-        <CustomHeader />
          <Form>
-          <Item floatingLabel>
+          <Item floatingLabel
+          style={styles.Item}
+          >
             <Label>Email</Label>
             <Input
               autoCorrect={false}
@@ -57,7 +58,9 @@ try {
             />
           </Item>
 
-          <Item floatingLabel>
+          <Item floatingLabel
+          style={styles.Item}
+          >
             <Label>Password</Label>
             <Input
               secureTextEntry={true}
@@ -67,11 +70,10 @@ try {
             />
           </Item>
 
-          <Button full primary onPress={()=>this.signUpUser(this.state.email,this.state.password)}>
-            <Text>Sign Up</Text>
+          <Button style={styles.Button} onPress={()=>this.signUpUser(this.state.email,this.state.password)}>
+            <Text style={styles.Text}>Sign Up</Text>
           </Button>
             </Form>
-            
       </Container>
     );
   }
@@ -83,4 +85,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
+
+  Item: {
+    borderColor: '#110500',
+    borderBottomWidth: 0.3,
+    borderRadius: 0,
+    width: '80%',
+    marginLeft: '10%',
+    marginTop: 10
+  },
+
+  Button: {
+    backgroundColor: '#FCBE5B',
+    color: '#fff',
+    width: '40%',
+    marginTop: 30,
+    marginLeft: '30%',
+    paddingTop: 15,
+    paddingBottom: 15, 
+    elevation: 0
+  },
+
+  Text: {
+    color: '#fff',
+    marginLeft: 50
+  }
 });

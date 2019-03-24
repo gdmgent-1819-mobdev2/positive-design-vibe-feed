@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FCBE5B',
     height: 65,
     marginTop: StatusBar.currentHeight,
+    elevation: 0
   }, 
   image: {
     height: 65,
