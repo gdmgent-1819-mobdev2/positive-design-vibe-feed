@@ -1,9 +1,10 @@
-import React, {Component } from 'react'
+import React from 'react'
 import { createSwitchNavigator, createStackNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation'
 
-import Home from '../screens/Home';
-import Signup from '../screens/Signup';
-import Signin from '../screens/Signin';
+import { Feed, Quote, Profile, Settings, Home, Signup, Signin, MoodChange, AddQuote } from '../screens/index'
+import ChangeEmail  from '../screens/Settings/ChangeEmail'
+import ChangePassword  from '../screens/Settings/ChangePassword'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const HomeLoginNavigator =  createStackNavigator({
     Home: {
@@ -14,11 +15,93 @@ const HomeLoginNavigator =  createStackNavigator({
     },
     Login: {
       screen: Signin
-    }
+    },
   }, 
   {
-    initialRouteName: "Home"
+    initialRouteName: 'Home'
   }
 )
 
-export default createAppContainer(HomeLoginNavigator)
+const ProfileNavigator =  createStackNavigator({
+    Profile: {
+      screen: Profile
+    },
+    Settings: {
+      screen: Settings
+    },
+    Quote: {
+      screen: AddQuote
+    }
+
+  }, 
+  {
+    initialRouteName: 'Profile'
+  }
+)
+
+const SettingsNavigator = createStackNavigator({
+  Settings: {
+    screen: Settings
+  },
+  Email: {
+    screen: ChangeEmail
+  },
+  Password: {
+    screen: ChangePassword
+  },
+
+
+  }
+)
+
+const MainNavigator = createBottomTabNavigator({
+  Slider: {
+    screen: MoodChange,
+    navigationOptions: {
+        tabBarLabel: 'Emotion',
+        tabBarIcon: () => (
+            <Ionicons name="paper" size={24} />
+        )
+    }
+  },
+  Feed: {
+    screen: Feed,
+    navigationOptions: {
+        tabBarLabel: 'Feed',
+        tabBarIcon: () => (
+            <Ionicons name="paper" size={24} />
+        )
+    }
+  },
+  Quotes: {
+      screen: Quote,
+      navigationOptions: {
+          tabBarLabel: 'Quotes',
+          tabBarIcon: () => (
+              <Ionicons name="quote" size={24} />
+          )
+      }
+  },
+  Profile: {
+      screen: Profile,
+      navigationOptions: {
+          tabBarLabel: 'Profile',
+          tabBarIcon: () => (
+              <Ionicons name="person" size={24} />
+          )
+      }
+  }
+},
+{
+  initialRouteName: 'Quotes' 
+})
+
+const SwitchNavigation = createSwitchNavigator({
+  Home: HomeLoginNavigator,
+  App: MainNavigator,
+  Profile: ProfileNavigator,
+  Settings: SettingsNavigator,
+
+})
+
+export default createAppContainer(SwitchNavigation)

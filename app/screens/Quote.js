@@ -11,7 +11,7 @@ export default class Quote extends React.Component {
     currentQuote: {},
   }
 
-  componentWillMount() {
+  componentWillMount = () => {
     this.getNewQuotes()
   }
 
@@ -51,22 +51,22 @@ export default class Quote extends React.Component {
   getRandomQuote = () => {
     const randomItemIndex = Math.floor(Math.random() * this.state.allQuotes.length)
     const randomQuote = this.state.allQuotes[randomItemIndex]
-    this.getLikesUser()
-      .then(likesUser => {
-        for(let i = 0; likesUser.length; i++){
-          if(likesUser[i].quote_id === randomQuote.quote_id) {
-            if(i == this.state.allQuotes.length - 1) {
-              this.setState({currentQuote: "Je hebt alle quotes gehad, kom later terug voor meer!"})
-              break;
-            }
-            this.getRandomQuote()
-          }
-          else {
+    // this.getLikesUser()
+    //   .then(likesUser => {
+    //     for(let i = 0; likesUser.length; i++){
+    //       if(likesUser[i].quote_id === randomQuote.quote_id) {
+    //         if(i == this.state.allQuotes.length - 1) {
+    //           this.setState({currentQuote: "Je hebt alle quotes gehad, kom later terug voor meer!"})
+    //           break;
+    //         }
+    //         this.getRandomQuote()
+    //       }
+    //       else {
             this.setState({currentQuote: randomQuote})
-            break
-          }
-        }
-      })
+            // break
+      //     }
+      //   }
+      // })
     
   }
 

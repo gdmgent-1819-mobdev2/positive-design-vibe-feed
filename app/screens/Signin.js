@@ -27,8 +27,8 @@ loginUser = (email, password) => {
 
 try {
     
-    firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
-    alert('you are logged in')
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+      this.props.navigation.navigate('App')
     })
 } catch (error) {
     console.log(error.toString())

@@ -31,6 +31,9 @@ try {
 }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      this.props.navigation.navigate('App')
+    })
 } catch (error) {
     console.log(error.toString())
     }

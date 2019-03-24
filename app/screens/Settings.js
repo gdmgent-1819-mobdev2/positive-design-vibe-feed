@@ -17,8 +17,8 @@ logout = () => {
   render() {
     return (
       <Container style={styles.container}>
-        <Button><Text>Change email</Text></Button>
-        <Button><Text>Change password</Text></Button>
+        <Button onPress={() => {this.props.navigation.navigate('Email')}}><Text>Change email</Text></Button>
+        <Button onPress={() => {this.props.navigation.navigate('Password')}}><Text>Change password</Text></Button>
         
         {/* Logout */}
         <Button onPress={this.logout()}>
