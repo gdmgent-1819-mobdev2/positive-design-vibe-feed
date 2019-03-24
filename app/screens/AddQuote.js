@@ -1,7 +1,48 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import { getInstance } from '../services/firebase';
-import CustomHeader from '../components/CustomHeader';
+
+const styles =  StyleSheet.create({
+  containerContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputField: {
+    width: '90%',
+    height:70,
+    textAlign: 'center',
+    color: '#000',
+    borderBottomWidth: 0.3,
+    borderBottomColor: '#110500',
+    fontSize: 20,
+    marginTop: 20
+  },
+
+  title: {
+    width: '70%',
+    fontSize: 33,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#FCBE5B'
+  },
+  buttonAdd: {
+    marginTop: 20,
+    height: 64,
+    width: 167,
+    backgroundColor: '#FCBE5B',
+    justifyContent: 'center',
+  },
+  textButton: {
+    textAlign: 'center',
+    fontSize: 27,
+    fontWeight: 'bold',
+    color: '#fff',
+  }
+
+})
+
+const firebase = getInstance()
 
 
 export default class AddQuote extends React.Component {
@@ -14,7 +55,6 @@ export default class AddQuote extends React.Component {
   }
 
   addQuoteToFirebase = () => {
-    const firebase = getInstance()
     if (this.state.newQuote.trim() !== ''){
       const date = new Date()
       const user = firebase.auth().currentUser
@@ -38,16 +78,18 @@ export default class AddQuote extends React.Component {
 
   render() {
     return (
-      <View>
-        <CustomHeader />
-        <Text>Want to add your own quote?</Text>
-        <TextInput 
-          placeholder="Quote"
-          value={this.state.newQuote}
-          onChangeText={this.changeQuote}
-        />
-        <Button title="Add quote" onPress={this.addQuoteToFirebase}></Button>
-      </View>
+        <View style={styles.containerContent}>
+          <Text style={styles.title}>Want to add your own quote?</Text>
+          <TextInput 
+            style={styles.inputField}
+            placeholder="Quote"
+            value={this.state.newQuote}
+            onChangeText={this.changeQuote}
+          />
+          <TouchableOpacity style={styles.buttonAdd} onPress={this.addQuoteToFirebase}>
+            <Text style={styles.textButton}>ADD</Text>
+          </TouchableOpacity>
+        </View>
     );
   }
 }

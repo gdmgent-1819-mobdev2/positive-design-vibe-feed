@@ -7,6 +7,84 @@ import CustomHeader from '../components/CustomHeader';
 
 const firebase = getInstance()
 
+const styles =  StyleSheet.create({
+  container: {
+    flex: 1,
+    height: '100%',
+    justifyContent: 'flex-start',
+    
+  },
+  header: {
+    height: 100,
+    
+
+  },
+  content: {
+    height: '100%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 120,
+  },
+  quote: {
+    backgroundColor: '#F8F8F8',
+    width: '80%',
+    height: 250,
+    paddingTop: 20,
+    paddingBottom: 50,
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
+  
+  quoteText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FCBE5B'
+
+  },
+
+  quoteUser: {
+    textAlign: 'right',
+  },
+
+  likes: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 50
+  },
+
+  likesIcon: {
+    marginRight: 5,
+    color: '#E74C3C'
+  },
+
+  buttons: {
+    flex:1,
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  button: {
+    width: 80,
+    height: 80,
+    borderWidth: 1,
+    borderColor: '#F8F8F8',
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconLike: {
+    fontSize: 30,
+    color: '#63BB91'
+
+  },
+  iconDislike: {
+    fontSize: 35,
+    color: '#EC6E70'
+
+  }
+  
+})
+
 export default class Quote extends React.Component {
   state = {
     allQuotes: [],
@@ -53,23 +131,7 @@ export default class Quote extends React.Component {
   getRandomQuote = () => {
     const randomItemIndex = Math.floor(Math.random() * this.state.allQuotes.length)
     const randomQuote = this.state.allQuotes[randomItemIndex]
-    // this.getLikesUser()
-    //   .then(likesUser => {
-    //     for(let i = 0; likesUser.length; i++){
-    //       if(likesUser[i].quote_id === randomQuote.quote_id) {
-    //         if(i == this.state.allQuotes.length - 1) {
-    //           this.setState({currentQuote: "Je hebt alle quotes gehad, kom later terug voor meer!"})
-    //           break;
-    //         }
-    //         this.getRandomQuote()
-    //       }
-    //       else {
-            this.setState({currentQuote: randomQuote})
-            // break
-      //     }
-      //   }
-      // })
-    
+    this.setState({currentQuote: randomQuote})
   }
 
   getLikesUser = () => {
@@ -119,28 +181,31 @@ export default class Quote extends React.Component {
   }
 
   render() {
-    if (typeof this.state.currentQuote !== 'string')  {
       return (
-        <View>
-          <CustomHeader />
-          <Text>"{ this.state.currentQuote.quote }"</Text>
-          <Text>{ this.state.currentQuote.likes }</Text>
-          <Text>user#{ this.state.currentQuote.uid }</Text>
-          <TouchableOpacity onPress={ this.likeQuote }>
-            <FontAwesome name="heart"></FontAwesome>    
-          </TouchableOpacity>
-          <TouchableOpacity onPress={ this.dislikeQuote } >
-            <FontAwesome name="times"></FontAwesome>
-          </TouchableOpacity>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <CustomHeader />
+          </View>
+          <View style={styles.content}>
+            <View style={styles.quote}>
+              <Text style={styles.quoteText}>"{ this.state.currentQuote.quote }"</Text>
+              <Text style={styles.quoteUser}>user#{ this.state.currentQuote.uid }</Text>
+              <View style={styles.likes}>
+                <FontAwesome style={styles.likesIcon} name="heart"></FontAwesome>    
+                <Text style={styles.likesNumber}>{ this.state.currentQuote.likes }</Text>
+              </View>
+            </View>
+            <View style={styles.buttons}>
+              <TouchableOpacity style={styles.button} onPress={ this.likeQuote }>
+                <FontAwesome style={styles.iconLike} name="heart"></FontAwesome>    
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={ this.dislikeQuote } >
+                <FontAwesome style={styles.iconDislike} name="times"></FontAwesome>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       )
     }
-    else {
-      return(
-        <View>
-          <Text>{this.state.currentQuote}</Text>    
-        </View>
-      )
-    }
-  }
+  
 }

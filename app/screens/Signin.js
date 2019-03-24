@@ -40,7 +40,7 @@ try {
   render() {
     return (
         <Container style={styles.container}>
-        <CustomHeader />
+        {/* <CustomHeader /> */}
         <Form>
           <Item floatingLabel>
             <Label>Email</Label>
