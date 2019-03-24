@@ -2,6 +2,8 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Touchable } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { getInstance } from '../services/firebase';
+import CustomHeader from '../components/CustomHeader';
+
 
 const firebase = getInstance()
 
@@ -120,6 +122,7 @@ export default class Quote extends React.Component {
     if (typeof this.state.currentQuote !== 'string')  {
       return (
         <View>
+          <CustomHeader />
           <Text>"{ this.state.currentQuote.quote }"</Text>
           <Text>{ this.state.currentQuote.likes }</Text>
           <Text>user#{ this.state.currentQuote.uid }</Text>

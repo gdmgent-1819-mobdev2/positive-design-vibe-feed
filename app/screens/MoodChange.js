@@ -1,6 +1,8 @@
 import React from 'react'
 import {View, Image,StyleSheet,Slider, Button} from 'react-native';
 import Images from '../assets/images';
+import CustomHeader from '../components/CustomHeader';
+
 
 export default class MoodChange extends React.Component {
 
@@ -44,6 +46,7 @@ export default class MoodChange extends React.Component {
     return (
 
      <View style={styles.container}>
+        <CustomHeader />
         <Image source={this.changeImage()} />
         <Slider
           style={{ width: 300 }}

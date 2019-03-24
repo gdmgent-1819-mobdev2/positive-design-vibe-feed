@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import { getInstance } from '../services/firebase'
+import CustomHeader from '../components/CustomHeader';
+
 
 
 // Initialize Firebase
@@ -38,7 +40,7 @@ try {
   render() {
     return (
         <Container style={styles.container}>
-            
+        <CustomHeader />
         <Form>
           <Item floatingLabel>
             <Label>Email</Label>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { getInstance } from '../services/firebase';
+import CustomHeader from '../components/CustomHeader';
 
 
 export default class AddQuote extends React.Component {
@@ -38,6 +39,7 @@ export default class AddQuote extends React.Component {
   render() {
     return (
       <View>
+        <CustomHeader />
         <Text>Want to add your own quote?</Text>
         <TextInput 
           placeholder="Quote"

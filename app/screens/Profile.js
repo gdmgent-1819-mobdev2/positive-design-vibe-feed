@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, StatusBar, ListView, TouchableOpacity } from 'r
 import { Container, Content, Header, Form, Input, Item, Button, Label, Icon, List, ListItem } from 'native-base'
 import { getInstance } from '../services/firebase'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import CustomHeader from '../components/CustomHeader';
+
 
 const firebase = getInstance()
 
@@ -55,6 +57,7 @@ export default class Profile extends React.Component {
   
     return (
       <Container style={styles.container}>
+        <CustomHeader />
         <TouchableOpacity onPress={() => {this.props.navigation.navigate('Settings')}} style={{marginTop: 50}}>
           <FontAwesome  name="cog"></FontAwesome>
         </TouchableOpacity>
