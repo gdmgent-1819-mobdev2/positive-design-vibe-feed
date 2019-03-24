@@ -56,18 +56,15 @@ export default class Profile extends React.Component {
   render() {
   
     return (
-      <Container style={styles.container}>
+      <Container>
         <CustomHeader />
-        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Settings')}} style={{marginTop: 50}}>
-          <FontAwesome  name="cog"></FontAwesome>
-        </TouchableOpacity>
-        <Content style={{ marginTop: StatusBar.currentHeight}}>
+        <Content style={styles.Content}>
           <List
             enableEmptySections
             dataSource={this.ds.cloneWithRows(this.state.ListViewData)}
             renderRow={data =>
               <ListItem>
-                <Text>{data.val().quote}</Text>
+                <Text style={styles.Text}>"{data.val().quote}"</Text>
               </ListItem>
             }
             renderLeftHiddenRow={data =>
@@ -83,8 +80,8 @@ export default class Profile extends React.Component {
             rightOpenValue={-75}
           />
         </Content>
-        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Quote')}} style={{marginTop: 50}}>
-          <FontAwesome  name="plus"></FontAwesome>
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Quote')}} style={styles.touchPlus} >
+          <FontAwesome style={styles.plus}  name="plus"></FontAwesome>
         </TouchableOpacity>
       </Container>
     );
@@ -92,9 +89,28 @@ export default class Profile extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+
+  Content: {
+    width: "80%",
+    marginLeft: "10%",
+    marginTop: 50,
+  },
+
+  Text: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderColor: '#110500',
+    color: '#110500'
+  },
+
+  touchPlus: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10
+  },
+
+  plus: {
+    color: '#FCBE5B',
+    fontSize: 60,
   },
 });

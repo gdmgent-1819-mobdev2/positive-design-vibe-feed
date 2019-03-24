@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import { getInstance } from '../services/firebase'
 import CustomHeader from '../components/CustomHeader';
@@ -18,14 +18,14 @@ logout = () => {
 
   render() {
     return (
-      <Container style={styles.container}>
+      <Container>
         <CustomHeader />
-        <Button onPress={() => {this.props.navigation.navigate('Email')}}><Text>Change email</Text></Button>
-        <Button onPress={() => {this.props.navigation.navigate('Password')}}><Text>Change password</Text></Button>
+        <Button style={styles.Button} onPress={() => {this.props.navigation.navigate('Email')}}><Text style={styles.Text}>Change email</Text></Button>
+        <Button style={styles.Button} onPress={() => {this.props.navigation.navigate('Password')}}><Text style={styles.Text}>Change password</Text></Button>
         
         {/* Logout */}
-        <Button onPress={this.logout()}>
-          <Text>Logout</Text>
+        <Button style={styles.Button} onPress={this.logout()}>
+          <Text style={styles.Text}>Logout</Text>
         </Button>
       </Container>
     );
@@ -33,9 +33,18 @@ logout = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+
+  Button: {
+    marginTop: 30,
+    marginBottom: 30,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    elevation: 0,
+    width: '100%'
   },
+
+  Text: {
+    textAlign:'center',
+    marginLeft: 50,
+    color: '#110500'
+  }
 });

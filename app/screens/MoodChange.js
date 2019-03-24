@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Image,StyleSheet,Slider, Button} from 'react-native';
+import {View, Image,StyleSheet,Slider, Button, StatusBar} from 'react-native';
 import Images from '../assets/images';
 import CustomHeader from '../components/CustomHeader';
 
@@ -45,7 +45,7 @@ export default class MoodChange extends React.Component {
   render() {
     return (
 
-     <View style={styles.container}>
+     <View>
         <CustomHeader />
         <Image source={this.changeImage()} />
         <Slider
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#fff',
     alignItems : 'center',
-    justifyContent : 'center',
+    justifyContent: 'center',
+    marginTop: StatusBar.currentHeight
   },
 });
