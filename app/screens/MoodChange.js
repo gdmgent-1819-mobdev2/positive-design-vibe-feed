@@ -1,20 +1,36 @@
 import React from 'react'
-import {View, Image,StyleSheet,Slider, Button, StatusBar} from 'react-native';
+import {View, Image,StyleSheet,Slider, Button,Text} from 'react-native';
 import Images from '../assets/images';
-import CustomHeader from '../components/CustomHeader';
-
+import { getInstance } from '../services/firebase';
 
 export default class MoodChange extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = { 
-      value: 3
+      mood: ''
     }
    }
 
+   storeData = (mood) => {
+    const firebase = getInstance() 
+    const userId = 'fDbQFFvKQ1YWqTJ6EJmEKRJASS42'
+    const date = new Date()
+    const key = firebase.database().ref('mood_user').push().getKey()
+    firebase.database().ref(`mood/${userId}`).set({
+      uid:'acbhj1hFwohuQvJWCSeXpZB90sC3',
+      mood_id: key,
+      mood: this.state.mood,
+      created_at: date.toLocaleString(),
+      deleted_at: '',
+
+    })
+    this.setState({mood:''})
+    this.props.navigation.navigate('App')
+   }
+
    changeImage() {
-    switch(this.state.value){
+    switch(this.state.mood){
         case 1:
           return  Images.emote2;
           break
@@ -45,8 +61,8 @@ export default class MoodChange extends React.Component {
   render() {
     return (
 
-     <View>
-        <CustomHeader />
+     <View style={styles.container}>
+        <Text style={styles.baseText}>How are you feeling ?</Text>
         <Image source={this.changeImage()} />
         <Slider
           style={{ width: 300 }}
@@ -54,9 +70,11 @@ export default class MoodChange extends React.Component {
           minimumValue={1}
           maximumValue={5}
           value={this.state.val}
-          onValueChange={val => this.setState({ value: val })}
-          onSlidingComplete={ val => console.log(this.state.value)}
+          thumbTintColor={'#00A6DB'}
+          onValueChange={val => this.setState({ mood: val })}
+          onSlidingComplete={(mood)=>this.setState({mood})}
         />
+        <Button title='Confirm' style= {styles.button} onPress={()=>this.storeData(this.state.mood)}/>
      </View>
     )
   }
@@ -67,7 +85,21 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#fff',
     alignItems : 'center',
-    justifyContent: 'center',
-    marginTop: StatusBar.currentHeight
+    justifyContent : 'center',
+  },
+  baseText : {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#3E3C63'
+  },
+  button: {
+    backgroundColor: '#FCBE5B',
+    color: '#fff',
+    width: '40%',
+    marginTop: 30,
+    marginLeft: '30%',
+    paddingTop: 15,
+    paddingBottom: 15,
+    elevation: 0
   },
 });

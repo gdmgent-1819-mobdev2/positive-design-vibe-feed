@@ -30,7 +30,7 @@ loginUser = (email, password) => {
 try {
     
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-      this.props.navigation.navigate('App')
+      this.props.navigation.navigate('Mood')
     })
 } catch (error) {
     alert.alert(error.toString())

@@ -20,6 +20,20 @@ const HomeLoginNavigator =  createStackNavigator({
   }
 )
 
+const MoodNavigator = createStackNavigator({
+    Mood: {
+      screen: MoodChange
+    },
+  
+  },
+  {
+    headerMode: 'none',
+    cardStyle: {
+        shadowOpacity: 0,
+    }
+  }
+)
+
 const ProfileNavigator =  createStackNavigator({
     Profile: {
       screen: Profile
@@ -71,6 +85,7 @@ const SwitchNavigation = createSwitchNavigator({
   Home: HomeLoginNavigator,
   App: MainNavigator,
   Profile: ProfileNavigator,
+  Mood: MoodNavigator
 })
 
 export default createAppContainer(SwitchNavigation)
